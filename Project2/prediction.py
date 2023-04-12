@@ -34,7 +34,7 @@ product_endict = {'Ultimus': 1, 'Infinix': 1,
 
 
 def data_transform(data):
-    df_sample = pd.DataFrame(data, columns=['Product', 'Processor', 'OS', 'Display', 'RAM_size', 'RAM_type', 'HD_type', 'HD_size'])
+    df_sample = pd.DataFrame(data, columns=['Product', 'OS', 'Display', 'RAM_size', 'RAM_type', 'HD_type', 'HD_size','Processor'])
     df_sample['Product'] = df_sample.Product.map(product_endict)
     df_sample['Processor'] = df_sample.Processor.map(processor_endict)
     encode_os = pickle.load(open(encode_os_path, 'rb'))
