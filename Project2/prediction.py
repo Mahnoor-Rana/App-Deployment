@@ -36,11 +36,12 @@ product_endict = {'Ultimus': 1, 'Infinix': 1,
 def data_transform(data):
     df_sample = pd.DataFrame(data, columns=['Product', 'OS', 'Display', 'RAM_size', 'RAM_type', 'HD_type', 'HD_size','Processor'])
     df_sample['Product'] = df_sample.Product.map(product_endict)
-    df_sample['Processor'] = df_sample.Processor.map(processor_endict)
-    encode_os = pickle.load(open(encode_os_path, 'rb'))
+
     df_sample['OS'] = encode_os.transform(df_sample['OS'])
     df_sample['RAM_type'] = df_sample.RAM_type.map(RAM_type_endict)
     df_sample['HD_type'] = df_sample.HD_type.map(HD_type_endict)
+    df_sample['Processor'] = df_sample.Processor.map(processor_endict)
+    encode_os = pickle.load(open(encode_os_path, 'rb'))
     scaler = pickle.load(open(scaler_path, 'rb'))
     scaled_features = df_sample.columns
     print(scaled_features)
